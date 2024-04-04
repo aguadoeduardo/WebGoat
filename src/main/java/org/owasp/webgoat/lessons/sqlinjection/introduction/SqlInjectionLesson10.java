@@ -65,10 +65,9 @@ public class SqlInjectionLesson10 extends AssignmentEndpoint {
     String query = "SELECT * FROM access_log WHERE action LIKE '%?%'";
 
     try (Connection connection = dataSource.getConnection()) {
-      try {
-        PreparedStatement statement =
+      try (PreparedStatement statement =
             connection.prepareStatement(query,
-                ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
 		statement.setString(1, action);
         ResultSet results = statement.executeQuery(query);
 
