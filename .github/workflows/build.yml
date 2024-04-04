@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+      - fix_01
+      - fix_02
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
